@@ -1,0 +1,30 @@
+We will introduce you to DoCrypto Developer KIT abilities and its features. Here is a documentary.
+
+create_crypto:
+This function can let you create your own crypto in a go! All it needs is a "username" and "password" (you must create an acccount in https://docryptonet.infinityfreeapp.com if you haven't already), "name" for your crypto and "shortname" as a currency id.
+
+add_supply:
+This function can let you add as many units as it's required. It's a key for controlling the crypto and managing its price. All it needs is "crypto_id" and "amount" for how much you want to add.
+
+run_algorithm:
+Algorithm is a basic unpredictive betting algorithm which can give some spikes, but not recommended as a main investor. All it needs is "crypto_id", "amount_algorithm" which is the amount of money to bet and "owner_pct" for the cut.
+
+check_balance:
+This function can let you check the amount of money the whole crypto has. All it needs is just "crypto_id".
+
+check_wallet_balance:
+This isn't necessary for developers, but it can be used as a simple fast check ot check how much your crypto wallet has. All it needs is "public_address" which is the public address of the crypto and "wallet_id" which is your wallet.
+
+lock_crypto:
+This function can let you lock a crypto to disable buy or selling. This is key for balancing market. All it needs is just "crypto_id".
+
+check_price:
+This function can let you check price of your crypto. It might be necessary for knowledge. All it needs is just "crypto_id".
+
+remove_supply:
+This can let you remove supply. It might let the holders trust the crypto and its market. Reminder you cant remove amount of supply more than the added supply. All it needs is "crypto_id" and "amount_remove_supply".
+
+check_units:
+This can let you know how much coins the crypto has sold. All it needs is "crypto_id".
+
+Hope this documentary was helpful.
