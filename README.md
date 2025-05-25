@@ -1,0 +1,1 @@
+This is unfinished and every update is a MUST update as if they're either security updates, adding new features or change to server. If you're new here and don't know what is this for, check out https://https://docryptonet.infinityfreeapp.com
