@@ -166,7 +166,7 @@ def check_price(crypto_id):
 
 def remove_supply(crypto_id, amount_remove_supply):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/add_supply.php"
+ base_url = "https://docryptonet.infinityfreeapp.com/app/remove_supply.php"
  url = f"{base_url}?crypto={crypto_id}&amount={amount_remove_supply}"
  # Chrome options
  options = Options()
