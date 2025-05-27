@@ -120,7 +120,7 @@ def lock_crypto(crypto_id):
 
 def check_price(crypto_id):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/add_supply.php"
+ base_url = "https://docryptonet.infinityfreeapp.com/app/check_price.php"
  url = f"{base_url}?cryptoid={crypto_id}"
  # Chrome options
  options = Options()
