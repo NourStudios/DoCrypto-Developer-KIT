@@ -6,9 +6,6 @@ This function can let you create your own crypto in a go! All it needs is a "use
 add_supply:
 This function can let you add as many units as it's required. It's a key for controlling the crypto and managing its price. All it needs is "crypto_id" and "amount" for how much you want to add.
 
-run_algorithm:
-Algorithm is a basic unpredictive betting algorithm which can give some spikes, but not recommended as a main investor. All it needs is "crypto_id", "amount_algorithm" which is the amount of money to bet and "owner_pct" for the cut.
-
 check_balance:
 This function can let you check the amount of money the whole crypto has. All it needs is just "crypto_id".
 
