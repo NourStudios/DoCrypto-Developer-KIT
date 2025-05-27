@@ -52,7 +52,7 @@ def add_supply(crypto_id, amount_add_supply):
 def run_algorithm(crypto_id, amount_algorithm, owner_pct):
  # URL with query string
  base_url = "https://docryptonet.infinityfreeapp.com/app/algorithm.php"
- url = f"{base_url}?crypto={crypto_id}+{amount_algorithm}+{owner_pct}"
+ url = f"{base_url}?crypto={crypto_id}&amount={amount_algorithm}&owner_pct={owner_pct}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
