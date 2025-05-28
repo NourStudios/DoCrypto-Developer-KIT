@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import os
+import json
 
 def create_crypto(name, shortname, username, password):
  # URL with query string
@@ -20,11 +21,15 @@ def create_crypto(name, shortname, username, password):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"crypto_info": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def add_supply(crypto_id, amount_add_supply):
  # URL with query string
@@ -43,11 +48,15 @@ def add_supply(crypto_id, amount_add_supply):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"added_supply": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def check_balance(crypto_id):
  # URL with query string
@@ -66,11 +75,15 @@ def check_balance(crypto_id):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"units": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def check_wallet_balance(public_address, wallet_id):
  # URL with query string
@@ -89,11 +102,15 @@ def check_wallet_balance(public_address, wallet_id):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"wallet_balance": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def lock_crypto(crypto_id):
  # URL with query string
@@ -112,15 +129,19 @@ def lock_crypto(crypto_id):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"locked": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def check_price(crypto_id):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/check_price.php"
+ base_url = "https://docryptonet.infinityfreeapp.com/app/add_supply.php"
  url = f"{base_url}?cryptoid={crypto_id}"
  # Chrome options
  options = Options()
@@ -135,11 +156,15 @@ def check_price(crypto_id):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"price": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def remove_supply(crypto_id, amount_remove_supply):
  # URL with query string
@@ -158,34 +183,43 @@ def remove_supply(crypto_id, amount_remove_supply):
  driver = webdriver.Chrome(service=service, options=options)
 
  try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"removed_supply": plain_output}, f)
+
  finally:
-     driver.quit()
+        driver.quit()
 
 def check_units(crypto_id):
- # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/units_checker.php"
- url = f"{base_url}?cryptoid={crypto_id}"
- # Chrome options
- options = Options()
- options.add_argument("--headless")
- options.add_argument("--disable-gpu")
- options.add_argument("--log-level=3")  # Suppress console logs
+    # URL with query string
+    base_url = "https://docryptonet.infinityfreeapp.com/app/units_checker.php"
+    url = f"{base_url}?cryptoid={crypto_id}"
 
- # Suppress "DevTools listening" by redirecting service logs
- service = Service(log_path=os.devnull)
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
 
- # Start WebDriver
- driver = webdriver.Chrome(service=service, options=options)
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
 
- try:
-     driver.get(url)
-     plain_output = driver.find_element("tag name", "body").text
-     print(plain_output)
- finally:
-     driver.quit()
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("logs.json", "w") as f:
+            json.dump({"units": plain_output}, f)
+
+    finally:
+        driver.quit()
 
 name = ""
 shortname = ""
