@@ -221,6 +221,34 @@ def check_units(crypto_id):
     finally:
         driver.quit()
 
+def check_added_supply(crypto_id):
+    # URL with query string
+    base_url = "https://docryptonet.infinityfreeapp.com/app/check_added_supply.php"
+    url = f"{base_url}?crypto_id={crypto_id}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("added_supply.json", "w") as f:
+            json.dump({"added_supply": plain_output}, f)
+
+    finally:
+        driver.quit()
+
 name = ""
 shortname = ""
 username = ""
