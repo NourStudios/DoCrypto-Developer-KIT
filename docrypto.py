@@ -79,8 +79,8 @@ def check_balance(crypto_id):
         plain_output = driver.find_element("tag name", "body").text
 
         # Save output to a JSON file
-        with open("units.json", "w") as f:
-            json.dump({"units": plain_output}, f)
+        with open("balance.json", "w") as f:
+            json.dump({"balance": plain_output}, f)
 
  finally:
         driver.quit()
