@@ -24,4 +24,15 @@ This can let you remove supply. It might let the holders trust the crypto and it
 check_units:
 This can let you know how much coins the crypto has sold. All it needs is "crypto_id".
 
+Read-able json files:
+We had made it possible for you guys to read outputs from the requests in a go. Rather than having to work hard onreading through priniting results. Here are some details:
+- check_units : We save the output in units.json as "units".
+- remove_supply : We save the output in removed_supply.json as "removed_supply".
+- check_price : We save the output in price.json as "price".
+- lock_crypto : We save the output in locked.json as "locked".
+- check_wallet_balance : We save the output in wallet_balance.json as "wallet_balance".
+- check_balance : We save the output in balance.json as "balance".
+- add_supply : We save the output in added_supply.json as "added_supply".
+- create_crypto : We save the output in crypto_info.json as "crypto_info".
+
 Hope this documentary was helpful.
