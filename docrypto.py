@@ -52,7 +52,7 @@ def add_supply(crypto_id, amount_add_supply):
 def check_balance(crypto_id):
  # URL with query string
  base_url = "https://docryptonet.infinityfreeapp.com/app/balance_checker.php"
- url = f"{base_url}?crypto={crypto_id}"
+ url = f"{base_url}?cryptoid={crypto_id}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
