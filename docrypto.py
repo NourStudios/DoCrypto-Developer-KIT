@@ -52,8 +52,8 @@ def add_supply(crypto_id, amount_add_supply):
         plain_output = driver.find_element("tag name", "body").text
 
         # Save output to a JSON file
-        with open("added_supply.json", "w") as f:
-            json.dump({"added_supply": plain_output}, f)
+        with open("add_supply.json", "w") as f:
+            json.dump({"add_supply": plain_output}, f)
 
  finally:
         driver.quit()
