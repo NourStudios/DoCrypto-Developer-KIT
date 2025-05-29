@@ -27,6 +27,9 @@ This can let you know how much coins the crypto has sold. All it needs is "crypt
 check_added_supply:
 This can let you know how much supply you added to your crypto. All it needs is "crypto_id".
 
+check_update:
+This can let you update the library in a go if available. It doesn't need anything.
+
 Read-able json files:
 We had made it possible for you guys to read outputs from the requests in a go. Rather than having to work hard onreading through priniting results. Here are some details:
 - check_units : We save the output in units.json as "units".

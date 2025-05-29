@@ -1,2 +1,4 @@
 selenium
-chromiuim driver(not in python)
+webdriver(outside of python)
+json
+zipfile

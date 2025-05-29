@@ -3,6 +3,67 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import os
 import json
+import time
+import zipfile
+import shutil
+
+def check_update():
+    # Set up download directory
+    download_dir = os.path.abspath("downloads")
+    os.makedirs(download_dir, exist_ok=True)
+    url = "https://docryptonet.infinityfreeapp.com/app/check_version.php?version=0.9"
+
+    # Configure Chrome options
+    chrome_options = Options()
+    chrome_options.add_experimental_option("prefs", {
+        "download.default_directory": download_dir,
+        "download.prompt_for_download": False,
+        "download.directory_upgrade": True,
+        "safebrowsing.enabled": True
+    })
+    chrome_options.add_argument("--headless")  # Optional: run headless
+
+    # Launch Chrome
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(url)
+
+    # Wait for download (polling every 0.5 seconds for 5 seconds)
+    downloaded_file = None
+    for _ in range(10):
+        files = os.listdir(download_dir)
+        zip_files = [f for f in files if f.endswith(".zip")]
+        if zip_files:
+            downloaded_file = os.path.join(download_dir, zip_files[0])
+            break
+        time.sleep(0.5)
+
+    driver.quit()
+
+    if not downloaded_file or not os.path.isfile(downloaded_file):
+        print("You have the latest version : 0.9")
+        return
+
+    # Extract ZIP and replace or add files to current directory
+    with zipfile.ZipFile(downloaded_file, 'r') as zip_ref:
+        temp_extract_path = os.path.join(download_dir, "temp_extract")
+        os.makedirs(temp_extract_path, exist_ok=True)
+        zip_ref.extractall(temp_extract_path)
+
+        # Move extracted files/folders to current directory
+        for item in os.listdir(temp_extract_path):
+            s = os.path.join(temp_extract_path, item)
+            d = os.path.join(os.getcwd(), item)
+            if os.path.isdir(s):
+                if os.path.exists(d):
+                    shutil.rmtree(d)
+                shutil.copytree(s, d)
+            else:
+                shutil.copy2(s, d)
+
+    print("Update completed.")
+
+    # Cleanup
+    shutil.rmtree(download_dir)
 
 def create_crypto(name, shortname, username, password):
  # URL with query string
