@@ -35,7 +35,7 @@ We had made it possible for you guys to read outputs from the requests in a go. 
 - lock_crypto : We save the output in locked.json as "locked".
 - check_wallet_balance : We save the output in wallet_balance.json as "wallet_balance".
 - check_balance : We save the output in balance.json as "balance".
-- add_supply : We save the output in added_supply.json as "added_supply".
+- add_supply : We save the output in add_supply.json as "add_supply".
 - create_crypto : We save the output in crypto_info.json as "crypto_info".
 - check_added_supply : We save the output in added_supply.json as "added_supply".
 
