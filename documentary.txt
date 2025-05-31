@@ -30,6 +30,45 @@ This can let you know how much supply you added to your crypto. All it needs is 
 check_update:
 This can let you update the library in a go if available. It doesn't need anything.
 
+update_price:
+This can let you change the price of your coin, but locks the market for personal reasons. It needs crypto_id, and set_price.
+
+check_attraction:
+This can let you check how many accounts have been created in you coin. All it needs is crypto_id.
+
+check_transactions:
+This can let you check the amount of total transactions stored in your blockchain. All it needs is crypto_id.
+
+check_buy_orders:
+This can let you check delayed buy orders when a market is locked. All it needs is crypto_id.
+
+check_crypto:
+This can let you check if your crypto exists. All it needs is crypto_id.
+
+check_wallet:
+This can let you check the balance of a wallet. All it needs is crypto_id and wallet_username.
+
+close_market:
+This can let you lock your market. All it needs is crypto_id.
+
+resell_product:
+This can let you resell digital products as an inbuilt-investing tool provided in our network. All it needs is crypto_id, budget, target_profit as in percentage(eg 0.2 as 20%).
+
+set_market:
+This can let you either lock or unlock your market for either certain users or for everyone. All it needs is crypto_id, set_buy_sell and users. For users, you can set "everyone" for unlocking or locking the market for everyone.
+
+set_sell_fees:
+This can let you set fees for selling. All it needs is crypto_id, fees.
+
+show_wallets:
+This can let you display all wallets made in your crypto. All it needs is crypto_id.
+
+transfer:
+This can let you transfer specific amount fom the crypto's balance. All it needs is crypto_id and amount_transfer.
+
+check_sell_orders:
+This can let you see how many users ordered sell if the market is locked. All it needs is crypto_id.
+
 Read-able json files:
 We had made it possible for you guys to read outputs from the requests in a go. Rather than having to work hard onreading through priniting results. Here are some details:
 - check_units : We save the output in units.json as "units".
@@ -41,5 +80,18 @@ We had made it possible for you guys to read outputs from the requests in a go. 
 - add_supply : We save the output in add_supply.json as "add_supply".
 - create_crypto : We save the output in crypto_info.json as "crypto_info".
 - check_added_supply : We save the output in added_supply.json as "added_supply".
+- update_price : We save the output in update_price.json as "status".
+- check_attraction : We save the output in attraction.json as "attraction".
+- check_transactions : We save the output in transactions.json as "transactions".
+- check_buy_orders : We save the output in buy_orders.json as "orders".
+- check_crypto : We save the output in check_crypto.json as "crypto".
+- check_wallet : We save the output in wallet_balance.json as "balance".
+- close_market : We save the output in close_market.json as "status".
+- resell_product : We save the output in market.json as "status".
+- set_market : We save the output in set_market.json as "status".
+- set_sell_fees: We save the output in set_sell_fees.json as "status".
+- show_wallets : We save the output in show_wallets.json as "wallets".
+- transfer : We save the output in transfer.json as "transfer".
+- check_sell_orders : We save the output in sell_orders.json as "orders".
 
 Hope this documentary was helpful.
