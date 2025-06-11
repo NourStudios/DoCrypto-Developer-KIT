@@ -1,73 +1,64 @@
 We will introduce you to DoCrypto Developer KIT abilities and its features. Here is a documentary.
 
 create_crypto:
-This function can let you create your own crypto in a go! All it needs is a "username" and "password" (you must create an acccount in https://docryptonet.infinityfreeapp.com if you haven't already), "name" for your crypto and "shortname" as a currency id.
+This function can let you create your own crypto in a go! All it needs is "crypto_password" which is the password for your crypto a "username" and "password" (you must create an acccount in https://docryptonet.infinityfreeapp.com if you haven't already), "name" for your crypto and "shortname" as a currency id.
 
 add_supply:
-This function can let you add as many units as it's required. It's a key for controlling the crypto and managing its price. All it needs is "crypto_id" and "amount" for how much you want to add.
+This function can let you add as many units as it's required. It's a key for controlling the crypto and managing its price. All it needs is "crypto_password" which is the password for your crypto "crypto_id" and "amount" for how much you want to add.
 
 check_balance:
-This function can let you check the amount of money the whole crypto has. All it needs is just "crypto_id".
+This function can let you check the amount of money the whole crypto has. All it needs is "crypto_password" which is the password for your crypto just "crypto_id".
 
 check_wallet_balance:
-This isn't necessary for developers, but it can be used as a simple fast check ot check how much your crypto wallet has. All it needs is "public_address" which is the public address of the crypto and "wallet_id" which is your wallet.
+This isn't necessary for developers, but it can be used as a simple fast check ot check how much your crypto wallet has. All it needs is "crypto_password" which is the password for your crypto "public_address" which is the public address of the crypto and "wallet_id" which is your wallet.
 
 lock_crypto:
-This function can let you lock a crypto to disable buy or selling. This is key for balancing market. All it needs is just "crypto_id".
+This function can let you lock a crypto to disable buy or selling. This is key for balancing market. All it needs is "crypto_password" which is the password for your crypto just "crypto_id".
 
 check_price:
-This function can let you check price of your crypto. It might be necessary for knowledge. All it needs is just "crypto_id".
+This function can let you check price of your crypto. It might be necessary for knowledge. All it needs is "crypto_password" which is the password for your crypto just "crypto_id".
 
 remove_supply:
-This can let you remove supply. It might let the holders trust the crypto and its market. Reminder you cant remove amount of supply more than the added supply. All it needs is "crypto_id" and "amount_remove_supply".
+This can let you remove supply. It might let the holders trust the crypto and its market. Reminder you cant remove amount of supply more than the added supply. All it needs is "crypto_password" which is the password for your crypto "crypto_id" and "amount_remove_supply".
 
 check_units:
-This can let you know how much coins the crypto has sold. All it needs is "crypto_id".
+This can let you know how much coins the crypto has sold. All it needs is "crypto_password" which is the password for your crypto "crypto_id".
 
 check_added_supply:
-This can let you know how much supply you added to your crypto. All it needs is "crypto_id".
+This can let you know how much supply you added to your crypto. All it needs is "crypto_password" which is the password for your crypto "crypto_id".
 
 check_update:
 This can let you update the library in a go if available. It doesn't need anything.
 
-update_price:
-This can let you change the price of your coin, but locks the market for personal reasons. It needs crypto_id, and set_price.
-
 check_attraction:
-This can let you check how many accounts have been created in you coin. All it needs is crypto_id.
+This can let you check how many accounts have been created in you coin. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 check_transactions:
-This can let you check the amount of total transactions stored in your blockchain. All it needs is crypto_id.
+This can let you check the amount of total transactions stored in your blockchain. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 check_buy_orders:
-This can let you check delayed buy orders when a market is locked. All it needs is crypto_id.
+This can let you check delayed buy orders when a market is locked. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 check_crypto:
-This can let you check if your crypto exists. All it needs is crypto_id.
+This can let you check if your crypto exists. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 check_wallet:
-This can let you check the balance of a wallet. All it needs is crypto_id and wallet_username.
-
-close_market:
-This can let you lock your market. All it needs is crypto_id.
-
-resell_product:
-This can let you resell digital products as an inbuilt-investing tool provided in our network. All it needs is crypto_id, budget, target_profit as in percentage(eg 0.2 as 20%).
+This can let you check the balance of a wallet. All it needs is "crypto_password" which is the password for your crypto crypto_id and wallet_username.
 
 set_market:
-This can let you either lock or unlock your market for either certain users or for everyone. All it needs is crypto_id, set_buy_sell and users. For users, you can set "everyone" for unlocking or locking the market for everyone.
+This can let you either lock or unlock your market for either certain users or for everyone. All it needs is "crypto_password" which is the password for your crypto crypto_id, set_buy_sell and users. For users, you can set "everyone" for unlocking or locking the market for everyone.
 
 set_sell_fees:
-This can let you set fees for selling. All it needs is crypto_id, fees.
+This can let you set fees for selling. All it needs is "crypto_password" which is the password for your crypto crypto_id, fees.
 
 show_wallets:
-This can let you display all wallets made in your crypto. All it needs is crypto_id.
+This can let you display all wallets made in your crypto. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 transfer:
-This can let you transfer specific amount fom the crypto's balance. All it needs is crypto_id and amount_transfer.
+This can let you transfer specific amount fom the crypto's balance. All it needs is "crypto_password" which is the password for your crypto crypto_id and amount_transfer.
 
 check_sell_orders:
-This can let you see how many users ordered sell if the market is locked. All it needs is crypto_id.
+This can let you see how many users ordered sell if the market is locked. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
 Read-able json files:
 We had made it possible for you guys to read outputs from the requests in a go. Rather than having to work hard onreading through priniting results. Here are some details:

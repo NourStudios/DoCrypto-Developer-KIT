@@ -11,7 +11,7 @@ def check_update():
     # Set up download directory
     download_dir = os.path.abspath("downloads")
     os.makedirs(download_dir, exist_ok=True)
-    url = "https://docryptonet.infinityfreeapp.com/app/check_version.php?version=0.9"
+    url = "http://dobnet.infinityfreeapp.com/check_version.php?version=1.1"
 
     # Configure Chrome options
     chrome_options = Options()
@@ -40,7 +40,7 @@ def check_update():
     driver.quit()
 
     if not downloaded_file or not os.path.isfile(downloaded_file):
-        print("You have the latest version : 0.9")
+        print("You have the latest version : 1.1")
         return
 
     # Extract ZIP and replace or add files to current directory
@@ -65,10 +65,10 @@ def check_update():
     # Cleanup
     shutil.rmtree(download_dir)
 
-def create_crypto(name, shortname, username, password):
+def create_crypto(name, shortname, format_type, format_length):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/create_crypto.php"
- url = f"{base_url}?name={name}&short={shortname}&username={username}&password={password}"
+ base_url = "http://dobnet.infinityfreeapp.com/create_b.php"
+ url = f"{base_url}?name={name}&short={shortname}&format_type={format_type}&format_length={format_length}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
@@ -92,10 +92,10 @@ def create_crypto(name, shortname, username, password):
  finally:
         driver.quit()
 
-def add_supply(crypto_id, amount_add_supply):
+def add_supply(crypto_id, amount_add_supply, crypto_password):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/add_supply.php"
- url = f"{base_url}?crypto={crypto_id}&amount={amount_add_supply}"
+ base_url = "http://dobnet.infinityfreeapp.com/add_supply.php"
+ url = f"{base_url}?b={crypto_id}&amount={amount_add_supply}&password={crypto_password}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
@@ -119,10 +119,10 @@ def add_supply(crypto_id, amount_add_supply):
  finally:
         driver.quit()
 
-def check_balance(crypto_id):
+def check_balance(crypto_id, crypto_password):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/check_balance.php"
- url = f"{base_url}?cryptoid={crypto_id}"
+ base_url = "http://dobnet.infinityfreeapp.com/check_balance.php"
+ url = f"{base_url}?bid={crypto_id}&password={crypto_password}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
@@ -146,37 +146,10 @@ def check_balance(crypto_id):
  finally:
         driver.quit()
 
-def lock_crypto(crypto_id):
+def check_price(public_address):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/lock_crypto.php"
- url = f"{base_url}?crypto_id={crypto_id}"
- # Chrome options
- options = Options()
- options.add_argument("--headless")
- options.add_argument("--disable-gpu")
- options.add_argument("--log-level=3")  # Suppress console logs
-
- # Suppress "DevTools listening" by redirecting service logs
- service = Service(log_path=os.devnull)
-
- # Start WebDriver
- driver = webdriver.Chrome(service=service, options=options)
-
- try:
-        driver.get(url)
-        plain_output = driver.find_element("tag name", "body").text
-
-        # Save output to a JSON file
-        with open("locked.json", "w") as f:
-            json.dump({"locked": plain_output}, f)
-
- finally:
-        driver.quit()
-
-def check_price(crypto_id):
- # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/price_checker.php"
- url = f"{base_url}?cryptoid={crypto_id}"
+ base_url = "http://dobnet.infinityfreeapp.com/check_price.php"
+ url = f"{base_url}?public_address={public_address}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
@@ -200,10 +173,10 @@ def check_price(crypto_id):
  finally:
         driver.quit()
 
-def remove_supply(crypto_id, amount_remove_supply):
+def remove_supply(crypto_id, amount_remove_supply, crypto_password):
  # URL with query string
- base_url = "https://docryptonet.infinityfreeapp.com/app/remove_supply.php"
- url = f"{base_url}?crypto={crypto_id}&amount={amount_remove_supply}"
+ base_url = "http://dobnet.infinityfreeapp.com/remove_supply.php"
+ url = f"{base_url}?b={crypto_id}&amount={amount_remove_supply}&password={crypto_password}"
  # Chrome options
  options = Options()
  options.add_argument("--headless")
@@ -227,10 +200,10 @@ def remove_supply(crypto_id, amount_remove_supply):
  finally:
         driver.quit()
 
-def check_units(crypto_id):
+def check_units(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_supply.php"
-    url = f"{base_url}?cryptoid={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_supply.php"
+    url = f"{base_url}?bid={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -255,10 +228,10 @@ def check_units(crypto_id):
     finally:
         driver.quit()
 
-def check_added_supply(crypto_id):
+def check_added_supply(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_added_supply.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_added_supply.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -283,38 +256,10 @@ def check_added_supply(crypto_id):
     finally:
         driver.quit()
 
-def update_price(crypto_id, set_price):
+def check_attraction(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/add_price.php"
-    url = f"{base_url}?id={crypto_id}&price={set_price}"
-
-    # Chrome options
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--log-level=3")  # Suppress console logs
-
-    # Suppress "DevTools listening" by redirecting service logs
-    service = Service(log_path=os.devnull)
-
-    # Start WebDriver
-    driver = webdriver.Chrome(service=service, options=options)
-
-    try:
-        driver.get(url)
-        plain_output = driver.find_element("tag name", "body").text
-
-        # Save output to a JSON file
-        with open("update_price.json", "w") as f:
-            json.dump({"status": plain_output}, f)
-
-    finally:
-        driver.quit()
-
-def check_attraction(crypto_id):
-    # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_attraction.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_attraction.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -339,10 +284,10 @@ def check_attraction(crypto_id):
     finally:
         driver.quit()
 
-def check_transactions(crypto_id):
+def check_transactions(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_blockchain.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_a.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -367,10 +312,10 @@ def check_transactions(crypto_id):
     finally:
         driver.quit()
 
-def check_buy_orders(crypto_id):
+def check_buy_orders(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_buy_requests.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_buy_requests.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -395,10 +340,10 @@ def check_buy_orders(crypto_id):
     finally:
         driver.quit()
 
-def check_crypto(crypto_id):
+def check_crypto(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_crypto.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_b.php"
+    url = f"{base_url}?bid={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -423,10 +368,10 @@ def check_crypto(crypto_id):
     finally:
         driver.quit()
 
-def check_wallet(crypto_id, wallet_username):
+def check_wallet(public_address, wallet_username, wallet_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_wallet.php"
-    url = f"{base_url}?crypto_address={crypto_id}&username={wallet_username}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_wallet.php"
+    url = f"{base_url}?b_address={public_address}&username={wallet_username}&password={wallet_password}"
 
     # Chrome options
     options = Options()
@@ -451,66 +396,10 @@ def check_wallet(crypto_id, wallet_username):
     finally:
         driver.quit()
 
-def close_market(crypto_id):
+def set_market(crypto_id, set_buy_sell, users, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/close_market.php"
-    url = f"{base_url}?cryptoid={crypto_id}"
-
-    # Chrome options
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--log-level=3")  # Suppress console logs
-
-    # Suppress "DevTools listening" by redirecting service logs
-    service = Service(log_path=os.devnull)
-
-    # Start WebDriver
-    driver = webdriver.Chrome(service=service, options=options)
-
-    try:
-        driver.get(url)
-        plain_output = driver.find_element("tag name", "body").text
-
-        # Save output to a JSON file
-        with open("close_market.json", "w") as f:
-            json.dump({"status": plain_output}, f)
-
-    finally:
-        driver.quit()
-
-def resell_product(crypto_id, budget, target_profit):
-    # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/market.php"
-    url = f"{base_url}?crypto_id={crypto_id}&max_spend={budget}&profit_percentage={target_profit}"
-
-    # Chrome options
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--disable-gpu")
-    options.add_argument("--log-level=3")  # Suppress console logs
-
-    # Suppress "DevTools listening" by redirecting service logs
-    service = Service(log_path=os.devnull)
-
-    # Start WebDriver
-    driver = webdriver.Chrome(service=service, options=options)
-
-    try:
-        driver.get(url)
-        plain_output = driver.find_element("tag name", "body").text
-
-        # Save output to a JSON file
-        with open("market.json", "w") as f:
-            json.dump({"status": plain_output}, f)
-
-    finally:
-        driver.quit()
-
-def set_market(crypto_id, set_buy_sell, users):
-    # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/set_market.php"
-    url = f"{base_url}?crypto_id={crypto_id}&market_action={set_buy_sell}&userParam={users}"
+    base_url = "http://dobnet.infinityfreeapp.com/set_market.php"
+    url = f"{base_url}?b_id={crypto_id}&market_action={set_buy_sell}&userParam={users}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -535,10 +424,10 @@ def set_market(crypto_id, set_buy_sell, users):
     finally:
         driver.quit()
 
-def set_sell_fees(crypto_id, fees):
+def set_sell_fees(crypto_id, fees, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/set_sell_fees.php"
-    url = f"{base_url}?crypto_id={crypto_id}&fee={fees}"
+    base_url = "http://dobnet.infinityfreeapp.com/set_sell_fees.php"
+    url = f"{base_url}?id={crypto_id}&fee={fees}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -563,10 +452,38 @@ def set_sell_fees(crypto_id, fees):
     finally:
         driver.quit()
 
-def show_wallets(crypto_id):
+def set_buy_fees(crypto_id, fees, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/show_wallets.php"
-    url = f"{base_url}?id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/set_buy_fees.php"
+    url = f"{base_url}?b={crypto_id}&fee={fees}&password={crypto_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("set_sell_fees.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def show_wallets(crypto_id, crypto_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/show_wallets.php"
+    url = f"{base_url}?id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -591,10 +508,10 @@ def show_wallets(crypto_id):
     finally:
         driver.quit()
 
-def transfer(crypto_id, amount_transfer):
+def transfer(crypto_id, amount_transfer, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/set_market.php"
-    url = f"{base_url}?crypto_id={crypto_id}&amount={amount_transfer}"
+    base_url = "http://dobnet.infinityfreeapp.com/transfer.php"
+    url = f"{base_url}?b_id={crypto_id}&amount={amount_transfer}&password={crypto_password}"
 
     # Chrome options
     options = Options()
@@ -619,10 +536,10 @@ def transfer(crypto_id, amount_transfer):
     finally:
         driver.quit()
 
-def check_sell_orders(crypto_id):
+def check_sell_orders(crypto_id, crypto_password):
     # URL with query string
-    base_url = "https://docryptonet.infinityfreeapp.com/app/check_sell_requests.php"
-    url = f"{base_url}?crypto_id={crypto_id}"
+    base_url = "http://dobnet.infinityfreeapp.com/check_sell_requests.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
 
     # Chrome options
     options = Options()
