@@ -11,7 +11,7 @@ def check_update():
     # Set up download directory
     download_dir = os.path.abspath("downloads")
     os.makedirs(download_dir, exist_ok=True)
-    url = "http://dobnet.infinityfreeapp.com/check_version.php?version=1.1"
+    url = "http://dobnet.infinityfreeapp.com/check_version.php?version=1.2"
 
     # Configure Chrome options
     chrome_options = Options()
@@ -40,7 +40,7 @@ def check_update():
     driver.quit()
 
     if not downloaded_file or not os.path.isfile(downloaded_file):
-        print("You have the latest version : 1.1")
+        print("You have the latest version : 1.2")
         return
 
     # Extract ZIP and replace or add files to current directory
@@ -560,6 +560,538 @@ def check_sell_orders(crypto_id, crypto_password):
         # Save output to a JSON file
         with open("sell_orders.json", "w") as f:
             json.dump({"orders": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def buy_coins(public_address, wallet_username, wallet_password, buy_coins_amount, username, user_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/buy_sell.php"
+    url = f"{base_url}?public_address={public_address}&wallet_username={wallet_username}&wallet_password={wallet_password}&action=buy&amount={buy_coins_amount}&username={username}&password={user_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("buy_coins.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def sell_coins(public_address, wallet_username, wallet_password, buy_coins_amount, username, user_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/buy_sell.php"
+    url = f"{base_url}?public_address={public_address}&wallet_username={wallet_username}&wallet_password={wallet_password}&action=sell&amount={buy_coins_amount}&username={username}&password={user_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("sell_coins.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def transfer_balance_fees(crypto_id, balance_fees_amount, crypto_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/transfer_balance_fees.php"
+    url = f"{base_url}?b_id={crypto_id}&amount={balance_fees_amount}&password={crypto_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("transfer_balance_fees.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def check_balance_fees(crypto_id, crypto_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/check_balance_fees.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("check_balance_fees.json", "w") as f:
+            json.dump({"balance_fees": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def check_sell_prices(public_address):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/check_sell_prices.php"
+    url = f"{base_url}?public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("check_sell_prices.json", "w") as f:
+            json.dump({"sell_prices": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def check_wallet_transactions(crypto_id, wallet_username, crypto_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/get_b_transaction_amounts.php"
+    url = f"{base_url}?b_id={crypto_id}&wallet_username={wallet_username}&password={crypto_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("check_wallet_transactions.json", "w") as f:
+            json.dump({"wallet_transactions": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def solve_nodes(miner_username, miner_password, wallet_username):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/SMinerService.php"
+    url = f"{base_url}?miner_username={miner_username}&miner_password={miner_password}&wallet_username={wallet_username}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("solve_nodes.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def t_service_solve_nodes(miner_username, miner_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/TSMinerService.php"
+    url = f"{base_url}?miner_username={miner_username}&miner_password={miner_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("t_solve_nodes.json", "w") as f:
+            json.dump({"solve_nodes": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def generate_miner_integeration_certificate(crypto_id, crypto_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/GenerateMinerIntegerationCertificate.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("miner_certificate.json", "w") as f:
+            json.dump({"miner_credentials": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def order_buy(username, user_password, p2p_buy_amount_coins, public_address, wallet_username):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/order_buy.php"
+    url = f"{base_url}?username={username}&password={user_password}&amount={p2p_buy_amount_coins}&public_address={public_address}&wallet_username={wallet_username}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("order_buy.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def order_sell(wallet_username, p2p_sell_amount_coins, public_address, wallet_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/order_sell.php"
+    url = f"{base_url}?wallet_username={wallet_username}&wallet_password={wallet_password}&amount={p2p_sell_amount_coins}&public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("order_sell.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def stake_process(wallet_username, p2p_sell_amount_coins, public_address, wallet_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/order_sell.php"
+    url = f"{base_url}?wallet_username={wallet_username}&wallet_password={wallet_password}&amount={p2p_sell_amount_coins}&public_address={public_address}&wallet_username={wallet_username}&stake=true"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("stake_process.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def finish_stake(wallet_username, wallet_password, public_address):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/finish_stake.php"
+    url = f"{base_url}?wallet_username={wallet_username}&wallet_password={wallet_password}&public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("finish_stake.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def set_apy(crypto_id, crypto_password, apy_amount, duration, stake_limit):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/set_apy.php"
+    url = f"{base_url}?b_id={crypto_id}&password={crypto_password}&apy={apy_amount}&days={duration}&stake_max={stake_limit}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("set_apy.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def set_stake(wallet_username, amount_coins, public_address, wallet_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/set_stake.php"
+    url = f"{base_url}?wallet_username={wallet_username}&wallet_password={wallet_password}&amount={amount_coins}&public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("set_stake.json", "w") as f:
+            json.dump({"status": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def check_user_balance(username, user_password):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/check_user.php"
+    url = f"{base_url}?username={username}&password={user_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("user_balance.json", "w") as f:
+            json.dump({"balance": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def create_wallet(public_address):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/create_wallet.php"
+    url = f"{base_url}?public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("wallet_credentials.json", "w") as f:
+            json.dump({"credentials": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def create_account(username, user_password, email):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/register.php"
+    url = f"{base_url}?username={username}&email={email}&password={user_password}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("account_credentials.json", "w") as f:
+            json.dump({"credentials": plain_output}, f)
+
+    finally:
+        driver.quit()
+
+def send_coins(wallet_username, wallet_reciever, send_coins_amount, wallet_password, public_address):
+    # URL with query string
+    base_url = "http://dobnet.infinityfreeapp.com/send_recieve.php"
+    url = f"{base_url}?from={wallet_username}&to={wallet_reciever}&amount={send_coins_amount}&password={wallet_password}&public_address={public_address}"
+
+    # Chrome options
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--log-level=3")  # Suppress console logs
+
+    # Suppress "DevTools listening" by redirecting service logs
+    service = Service(log_path=os.devnull)
+
+    # Start WebDriver
+    driver = webdriver.Chrome(service=service, options=options)
+
+    try:
+        driver.get(url)
+        plain_output = driver.find_element("tag name", "body").text
+
+        # Save output to a JSON file
+        with open("send_coins.json", "w") as f:
+            json.dump({"status": plain_output}, f)
 
     finally:
         driver.quit()

@@ -60,6 +60,63 @@ This can let you transfer specific amount fom the crypto's balance. All it needs
 check_sell_orders:
 This can let you see how many users ordered sell if the market is locked. All it needs is "crypto_password" which is the password for your crypto crypto_id.
 
+buy_coins:
+This function can let you buy your own coins using your balance from the account you created. All it needs are public_address, wallet_username, wallet_password, buy_coins_amount, username, user_password.
+
+sell_coins:
+This function can let you sell coins from your wallet. All it needs are public_address, wallet_username, wallet_password, buy_coins_amount, username, user_password.
+
+tranfer_balance_fees:
+This can let you transfer from your crypto's balance fees to your crypto's balance. All it needs are crypto_id, balance_fees_amount, crypto_password.
+
+check_balance_fees:
+This can let you know the amount of your crypto's balance fees. All it needs are crypto_id, crypto_password.
+
+check_sell_prices:
+This can let you know the sell prices of a coin in the P2P built-in platform. All it needs is public_address.
+
+check_wallet_transactions:
+This can let you check a wallet buy orders and sell orders. All it needs are crypto_id, wallet_username, crypto_password.
+
+solve_nodes:
+This function is a miner algortihm where you solve nodes. It's a must use function, without it running this 24/7, it can't let your coin work properly. All it needs miner_username, miner_password, wallet_username. Any information you can get the miner credentials is in generate_miner_integeration_certificate. And the wallet username is also a must to get you your rewards.
+
+t_service_solve_nodes:
+This function is another miner algorithm where you solve nodes. It's also a must use function, without it running 24/7, it can't let your coin work properly. All it needs is miner_username, miner_password.
+
+generate_miner_integeration_certificate:
+This can let you generate you miner credentials. Without it, your coin is unmanagable. All it needs is crypto_id, crypto_password.
+
+order_buy:
+This can let you buy coins from the P2P built-in platform. It's cruical for a native wallet. All it needs are username, user_password, p2p_buy_amount_coins, public_address, wallet_username.
+
+order_sell:
+This can let you sell coins in the P2P built-in platform. All it needs are wallet_username, p2p_sell_amount_coins, public_address, wallet_password.
+
+stake_process:
+This is a function where it can let you do something with stake holder(s). All it needs is wallet_username, p2p_sell_amount_coins, public_address, wallet_password.
+
+finish_stake:
+This can let you finish your stake. All it needs is wallet_username, wallet_password, public_address.
+
+set_apy:
+This can let you setup APY for staking process. You must do this before allowing staking support. All it needs is crypto_id, crypto_password, apy_amount, duration, stake_limit. Set stake_limit to 0 if you don't want to have stake limit.
+
+set_stake:
+This can let you set your own stake from your wallet. All it needs is wallet_username, amount_coins, public_address, wallet_password.
+
+check_user_balance:
+This can let you check how much balance you have in your account. All it needs username, user_password.
+
+create_wallet:
+This can let you create your wallet for a specific coin. All it needs is public_address.
+
+create_account:
+This can let you create your account. All it needs is username, user_password, email.
+
+send_coins:
+This can let you send coins to a wallet. All it needs wallet_username, wallet_reciever, send_coins_amount, wallet_password, public_address.
+
 Read-able json files:
 We had made it possible for you guys to read outputs from the requests in a go. Rather than having to work hard onreading through priniting results. Here are some details:
 - check_units : We save the output in units.json as "units".
@@ -84,5 +141,23 @@ We had made it possible for you guys to read outputs from the requests in a go. 
 - show_wallets : We save the output in show_wallets.json as "wallets".
 - transfer : We save the output in transfer.json as "transfer".
 - check_sell_orders : We save the output in sell_orders.json as "orders".
-
+- buy_coins : We save the output in buy_coins.json as "status".
+- sell_coins : We save the output in sell_coins.json as "status".
+- transfer_balance_fees: We save the output in tranfer_balance_fees.json as "status".
+- check_balance_fees : We save the output in check_balance_fees.json as "balance_fees".
+- check_sell_prices : We save the output in check_sell_prices.json as "sell_prices".
+- check_wallet_transactions: We save the output in check_wallet_transactions.json as "wallet_transactions".
+- solve_nodes : We save the output in solve_nodes.json as "status".
+- t_service_solve_nodes : We save the output in t_solve_nodes.json as "solve_nodes".
+- generate_miner_integeration_certificate : We save the output in miner_certificate.json as "miner_credentials".
+- order_buy : We save the output in order_buy.json as "status".
+- order_sell : We save the output in order_sell.json as "status".
+- stake_process : We save the output in stake_process.json as "status".
+- finish_stake : We save the output in finish_stake.json as "status".
+- set_apy : We save the output in set_apy.json as "status".
+- set_stake : We save the output in set_stake.json as "status".
+- check_user_balance : We save the output in user_balance.json as "balance".
+- create_wallet : We save the output in wallet_credentials.json as "credentials".
+- create_account : We save the output in account_credentials.json as "credentials".
+- send_coins : We save the output in send_coins.json as "status".
 Hope this documentary was helpful.
